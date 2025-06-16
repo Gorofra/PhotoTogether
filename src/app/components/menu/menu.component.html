@@ -1,0 +1,48 @@
+<nav class="menu-container">
+  <!-- Menu Trigger Button -->
+  <button 
+    mat-fab 
+    color="primary"
+    class="menu-trigger"
+    [matMenuTriggerFor]="mainMenu" 
+    aria-label="Menu principale">
+    <mat-icon class="menu-icon">menu</mat-icon>
+  </button>
+
+  <!-- Menu Panel -->
+  <mat-menu #mainMenu="matMenu" xPosition="before" yPosition="below">
+    
+    <!-- Menu Header -->
+    <div class="menu-header">
+      <mat-icon class="header-icon">photo_camera</mat-icon>
+      <span class="header-title">Photo Gallery</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Menu Items -->
+    <button mat-menu-item routerLink="/gallery" class="menu-item">
+      <mat-icon class="item-icon">photo_library</mat-icon>
+      <div class="item-content">
+        <span class="item-title">Galleria</span>
+        <span class="item-subtitle">Visualizza le tue foto</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/upload" class="menu-item">
+      <mat-icon class="item-icon">cloud_upload</mat-icon>
+      <div class="item-content">
+        <span class="item-title">Carica</span>
+        <span class="item-subtitle">Aggiungi nuove foto</span>
+      </div>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <!-- Menu Footer -->
+    <div class="menu-footer">
+      <span class="footer-text">Photo Gallery App</span>
+    </div>
+
+  </mat-menu>
+</nav>

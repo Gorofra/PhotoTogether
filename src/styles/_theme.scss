@@ -1,0 +1,21 @@
+// Custom Theme Variables
+$color-primary: #1e3a8a;
+$color-secondary: #3b82f6;
+$color-accent: #60a5fa;
+$color-metallic: #1e40af;
+$color-text: #1e293b;
+
+// Gradients
+$gradient-bg: linear-gradient(to bottom right, #f8fafc, #dbeafe);
+$gradient-button: linear-gradient(135deg, $color-metallic, $color-secondary);
+
+// Shadows
+$shadow-card: 0 4px 6px -1px rgba(30, 58, 138, 0.1), 0 2px 4px -1px rgba(30, 58, 138, 0.06);
+$shadow-hover: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 0 4px 6px -2px rgba(30, 58, 138, 0.05);
+
+// Transitions
+$transition-base: all 0.3s ease;
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;

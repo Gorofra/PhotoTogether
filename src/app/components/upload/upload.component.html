@@ -1,0 +1,63 @@
+<div class="upload-container">
+  <div class="upload-card">
+    <!-- Header -->
+    <div class="upload-header">
+      <mat-icon class="upload-icon">cloud_upload</mat-icon>
+      <h2 class="upload-title">Carica le tue foto</h2>
+      <p class="upload-subtitle">Seleziona un'immagine da caricare nella galleria</p>
+    </div>
+
+    <!-- Upload Area -->
+    <div class="upload-area" [class.has-file]="selectedFile">
+      <input
+        type="file"
+        #fileInput
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        style="display: none">
+
+      <!-- Drop Zone -->
+      <div class="drop-zone" (click)="fileInput.click()">
+        <mat-icon class="drop-icon">add_photo_alternate</mat-icon>
+        <span class="drop-text">Clicca per scegliere una foto</span>
+        <span class="drop-hint">Formati supportati: JPG, PNG, GIF</span>
+      </div>
+
+      <!-- File Selected Info -->
+      <div class="file-info" *ngIf="selectedFile">
+        <mat-icon class="file-icon">image</mat-icon>
+        <div class="file-details">
+          <span class="file-name">{{ selectedFile.name }}</span>
+          <span class="file-size">{{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB</span>
+        </div>
+        <button mat-icon-button class="remove-file" (click)="selectedFile = null; uploadStatus = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-container" *ngIf="uploadStatus && uploadStatus.includes('corso')">
+        <mat-progress-bar mode="indeterminate" class="upload-progress"></mat-progress-bar>
+        <span class="progress-text">{{ uploadStatus }}</span>
+      </div>
+
+      <!-- Status Message -->
+      <div class="status-message" *ngIf="uploadStatus && !uploadStatus.includes('corso')">
+        <mat-icon class="status-icon" [class.success]="uploadStatus.includes('successo')" [class.error]="uploadStatus.includes('Errore')">
+          {{ uploadStatus.includes('successo') ? 'check_circle' : 'error' }}
+        </mat-icon>
+        <span class="status-text">{{ uploadStatus }}</span>
+      </div>
+
+      <!-- Upload Button -->
+      <button 
+        mat-raised-button
+        class="upload-button"
+        [disabled]="!selectedFile || uploadStatus.includes('corso')"
+        (click)="onUpload()">
+        <mat-icon>cloud_upload</mat-icon>
+        <span>{{ uploadStatus.includes('corso') ? 'Caricamento...' : 'Carica Foto' }}</span>
+      </button>
+    </div>
+  </div>
+</div>

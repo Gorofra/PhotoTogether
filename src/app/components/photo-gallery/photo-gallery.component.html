@@ -1,0 +1,82 @@
+<div class="gallery-container">
+  <!-- Header con toolbar migliorata -->
+  <div class="gallery-header">
+    <h1 class="gallery-title">
+      <mat-icon class="title-icon">photo_library</mat-icon>
+      Galleria Foto
+    </h1>
+    <button 
+      mat-raised-button 
+      class="refresh-button"
+      (click)="loadPhotos()"
+      [disabled]="loading">
+      <mat-icon>refresh</mat-icon>
+      <span *ngIf="!loading">Carica Foto</span>
+      <span *ngIf="loading">Caricamento...</span>
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <span class="loading-text">Caricamento foto in corso...</span>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && photos.length === 0" class="empty-state">
+    <mat-icon class="empty-icon">photo_library</mat-icon>
+    <h3>Nessuna foto trovata</h3>
+    <p>Carica alcune foto per iniziare!</p>
+  </div>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid" *ngIf="!loading && photos.length > 0">
+    <div 
+      *ngFor="let photo of photos; let i = index" 
+      class="photo-item"
+      (click)="openLightbox(i)">
+      <img [src]="getPhotoUrl(photo)" [alt]="photo">
+      <div class="photo-overlay">
+        <mat-icon class="zoom-icon">zoom_in</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div *ngIf="showLightbox" class="lightbox-overlay" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button mat-icon-button class="close-button" (click)="closeLightbox()">
+        <mat-icon>close</mat-icon>
+      </button>
+      
+      <img 
+        [src]="getPhotoUrl(photos[currentPhotoIndex])" 
+        [alt]="photos[currentPhotoIndex]"
+        class="lightbox-image">
+      
+      <div class="lightbox-controls">
+        <button 
+          mat-mini-fab 
+          color="primary" 
+          (click)="previousPhoto()" 
+          [disabled]="currentPhotoIndex === 0"
+          class="nav-button">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        
+        <span class="photo-counter">
+          {{ currentPhotoIndex + 1 }} di {{ photos.length }}
+        </span>
+        
+        <button 
+          mat-mini-fab 
+          color="primary" 
+          (click)="nextPhoto()" 
+          [disabled]="currentPhotoIndex === photos.length - 1"
+          class="nav-button">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

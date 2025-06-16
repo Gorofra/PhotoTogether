@@ -1,0 +1,305 @@
+// Variabili colore azzurro metallico
+:root {
+  --primary-blue: #1e3a8a;
+  --secondary-blue: #3b82f6;
+  --accent-blue: #60a5fa;
+  --metallic-blue: #1e40af;
+  --light-blue: #dbeafe;
+  --dark-blue: #1e293b;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+}
+
+.menu-container {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+
+  .menu-trigger {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--metallic-blue) 100%) !important;
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+    transition: all 0.3s ease;
+    width: 56px;
+    height: 56px;
+
+    &:hover {
+      background: linear-gradient(135deg, var(--metallic-blue) 0%, var(--secondary-blue) 100%) !important;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .menu-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      color: rgb(0, 0, 0) !important;
+    }
+
+    &[aria-expanded="true"] .menu-icon {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--metallic-blue) 100%);
+  color: var(--white);
+
+  .header-icon {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    color: rgb(0, 0, 0) !important;
+  }
+
+  .header-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0) !important;
+  }
+}
+
+.menu-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 1rem 1.5rem !important;
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  color: var(--gray-800) !important;
+  height: auto !important;
+  line-height: normal !important;
+
+  &:hover {
+    background: rgba(30, 58, 138, 0.05) !important;
+    transform: translateX(4px);
+
+    .item-icon {
+      color: var(--primary-blue) !important;
+      transform: scale(1.1);
+    }
+
+    .item-title {
+      color: var(--primary-blue) !important;
+    }
+  }
+
+  &:active {
+    transform: translateX(2px);
+  }
+
+  .item-icon {
+    font-size: 1.3rem !important;
+    color: var(--gray-600) !important;
+    transition: all 0.3s ease;
+    min-width: 24px;
+  }
+
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    flex: 1;
+
+    .item-title {
+      font-size: 1rem !important;
+      font-weight: 500 !important;
+      color: var(--gray-800) !important;
+      transition: color 0.3s ease;
+    }
+
+    .item-subtitle {
+      font-size: 0.85rem !important;
+      color: var(--gray-600) !important;
+      opacity: 0.8;
+    }
+  }
+}
+
+.menu-footer {
+  padding: 1rem 1.5rem;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+
+  .footer-text {
+    font-size: 0.8rem !important;
+    color: var(--gray-600) !important;
+    text-align: center;
+    display: block;
+  }
+}
+
+// OVERRIDE ANGULAR MATERIAL - CONSOLIDATI E OTTIMIZZATI
+::ng-deep {
+  // Panel del menu
+  .mat-mdc-menu-panel {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(30, 58, 138, 0.15) !important;
+    border: 1px solid #e2e8f0 !important;
+    overflow: hidden !important;
+    min-width: 280px !important;
+    max-width: 320px !important;
+    animation: menuSlideIn 0.3s ease-out;
+  }
+
+  // Contenuto del menu
+  .mat-mdc-menu-content {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  // Items del menu
+  .mat-mdc-menu-item {
+    height: auto !important;
+    padding: 0 !important;
+    line-height: normal !important;
+    background: transparent !important;
+    color: #1e293b !important;
+
+    &:hover {
+      background: rgba(30, 58, 138, 0.05) !important;
+    }
+
+    &.mdc-list-item--selected {
+      background: rgba(30, 58, 138, 0.1) !important;
+    }
+  }
+
+  // Testo degli items
+  .mat-mdc-menu-item .mat-mdc-menu-item-text,
+  .mdc-list-item__primary-text {
+    color: #1e293b !important;
+  }
+
+  // ICONE - GESTIONE COMPLETA E CORRETTA
+  // Icona del FAB trigger (bianca)
+  .mat-mdc-fab .mat-icon {
+    color: white !important;
+  }
+
+  // Icone nell'header del menu (bianche)
+  .menu-header .mat-icon {
+    color: white !important;
+  }
+
+  // Icone nei menu items (grigie di default, blu al hover)
+  .mat-mdc-menu-item .mat-icon {
+    color: #475569 !important;
+  }
+
+  .mat-mdc-menu-item:hover .mat-icon {
+    color: #1e3a8a !important;
+  }
+
+  // Divider
+  .mat-mdc-menu-content .mat-divider {
+    border-top-color: #e2e8f0 !important;
+    margin: 0 !important;
+  }
+
+  // FAB button styling
+  .mat-mdc-fab.mat-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+    color: white !important;
+  }
+
+  // Stato attivo per le route
+  .menu-item.router-link-active {
+    background: rgba(30, 58, 138, 0.1) !important;
+
+    .item-icon,
+    .mat-icon {
+      color: #1e3a8a !important;
+    }
+
+    .item-title {
+      color: #1e3a8a !important;
+      font-weight: 600 !important;
+    }
+  }
+}
+
+// Animazione di entrata del menu
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .menu-container {
+    top: 1rem;
+    right: 1rem;
+
+    .menu-trigger {
+      width: 48px;
+      height: 48px;
+
+      .menu-icon {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  ::ng-deep .mat-mdc-menu-panel {
+    min-width: 260px !important;
+    max-width: 280px !important;
+  }
+
+  .menu-header {
+    padding: 1.25rem 1.25rem 0.75rem;
+
+    .header-title {
+      font-size: 1rem;
+    }
+  }
+
+  .menu-item {
+    padding: 0.875rem 1.25rem !important;
+
+    .item-content {
+      .item-title {
+        font-size: 0.95rem !important;
+      }
+
+      .item-subtitle {
+        font-size: 0.8rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-container {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  ::ng-deep .mat-mdc-menu-panel {
+    min-width: 240px !important;
+    max-width: 260px !important;
+  }
+}
